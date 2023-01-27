@@ -4,13 +4,13 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="ga_alumnos",schema="dlk_gestionPortatil")
+@Table(name="ga_portatiles",schema="dlk_gestionPortatil")
 public class portatiles {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", unique= true, nullable=true)
-	private int id;
+	@Column(name="id_portatil", unique= true, nullable=true)
+	private int id_portatil;
 	
 	@Column(name="marca", unique=false, nullable=false)
 	private String marca;
@@ -18,20 +18,31 @@ public class portatiles {
 	@Column(name="modelo", unique=false, nullable=false)
 	private String modelo;
 	
-	@Column(name="alumno_id", unique=false, nullable=true)
-	@OneToOne(mappedBy="id")
+	@OneToOne(mappedBy="num_port")
 	private alumnos alumno_id;
 
-	public int getId() {
-		return id;
+	
+
+	public alumnos getAlumno_id() {
+		return alumno_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAlumno_id(alumnos alumno_id) {
+		this.alumno_id = alumno_id;
 	}
+
+
 
 	public String getMarca() {
 		return marca;
+	}
+
+	public int getId_portatil() {
+		return id_portatil;
+	}
+
+	public void setId_portatil(int id_portatil) {
+		this.id_portatil = id_portatil;
 	}
 
 	public void setMarca(String marca) {
@@ -46,13 +57,6 @@ public class portatiles {
 		this.modelo = modelo;
 	}
 
-	public alumnos getAlumno_id() {
-		return alumno_id;
-	}
-
-	public void setAlumno_id(alumnos alumno_id) {
-		this.alumno_id = alumno_id;
-	}
 	
 	
 	

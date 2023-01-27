@@ -38,7 +38,7 @@ public interface ConsultasService {
 	 * @param nuevo portatil
 	 */
 	
-	public void darAltaPortatil(portatiles port);
+	public boolean darAltaPortatil(portatiles port);
 
 	/**
 	 * listarPortatilconAlumno: lista de los portatiles con alumnos especifico
@@ -52,7 +52,7 @@ public interface ConsultasService {
 	 * @param alumno
 	 */
 	
-	public void darBajaAlumno(alumnos alumn);
+	public boolean darBajaAlumno(alumnos alumn);
 
 
 }

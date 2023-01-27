@@ -7,8 +7,8 @@ public class alumnos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", unique= true, nullable=true)
-	private int id;
+	@Column(name="id_alumno", unique= true, nullable=true)
+	private int id_alumno;
 	
 	@Column(name="nombre", unique=false, nullable=false)
 	private String nombre;
@@ -17,15 +17,16 @@ public class alumnos {
 	private String telefono;
 	
 	@OneToOne
-	@Column(name="num_port", unique=false, nullable=true)
 	private portatiles num_port;
 
-	public int getId() {
-		return id;
+
+
+	public int getId_alumno() {
+		return id_alumno;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId_alumno(int id_alumno) {
+		this.id_alumno = id_alumno;
 	}
 
 	public String getNombre() {
