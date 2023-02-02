@@ -1,8 +1,10 @@
 package DAL;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Cascade;
 @Entity
-@Table(name="ga_alumnos",schema="dlk_gestionAlumnos")
+@Table(name="ga_alumnos",schema="dlk_gestion_alumnos")
 public class alumnos {
 
 	@Id
@@ -10,16 +12,14 @@ public class alumnos {
 	@Column(name="id_alumno", unique= true, nullable=true)
 	private int id_alumno;
 	
-	@Column(name="nombre", unique=false, nullable=false)
+	@Column(name="nombre")
 	private String nombre;
 	
-	@Column(name="telefono", unique=false, nullable=false)
+	@Column(name="telefono")
 	private String telefono;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private portatiles num_port;
-
-
 
 	public int getId_alumno() {
 		return id_alumno;

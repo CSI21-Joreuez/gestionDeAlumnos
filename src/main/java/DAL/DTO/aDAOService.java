@@ -1,4 +1,8 @@
 package DAL.DTO;
+
+import DAL.alumnos;
+import DAL.portatiles;
+
 /**
  * @author JOD
  * aDAOService: Interfaz con los metodos que pasan de DTO a DAO.
@@ -11,7 +15,7 @@ public interface aDAOService {
 	 * @param alumnos_portatilesDTO dto de alumno DTO
 	 * @return
 	 */
-	public alumnos_portatilesDTO alumnoDTOaDAO(alumnos_portatilesDTO alumnDTO);
+	public alumnos alumnoDTOaDAO(alumnos_portatilesDTO alumnDTO);
 	
 	
 	/**
@@ -19,6 +23,6 @@ public interface aDAOService {
 	 * @param alumnos_portatilesDTO dto de portatil DTO
 	 * @return
 	 */
-	public alumnos_portatilesDTO portatilDTOaDAO(alumnos_portatilesDTO portatilDTO);
+	public portatiles portatilDTOaDAO(alumnos_portatilesDTO portatilDTO);
 
 }

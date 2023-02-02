@@ -41,17 +41,23 @@ public class Menu {
 					System.out.println("[INFO] - Menu cerrada" + opcion);
 					break;
 				case 1:
-					
+					menu.darAltaAlumno(consulta);
 					break;
 				case 2:
+					menu.darBajaAlumno(consulta);
 					break;
 				case 3:
+					menu.darAltaPortatil(consulta);
+
 					break;
 				case 4:
+					menu.listarPortatilconAlumno(consulta);
 					break;
 				case 5:
+					menu.listarAlumnoConPortatil(consulta);
 					break;
 				case 6:
+					menu.listadoAlumnos(consulta);
 					break;
 				default:
 					opcion2 = menu.mostrarMenu(opcion);	

@@ -1,5 +1,7 @@
 package DAL.DTO;
 
+import DAL.alumnos;
+import DAL.portatiles;
 
 /**
  * @author JOD
@@ -7,9 +9,9 @@ package DAL.DTO;
  */
 public class aDAOServiceImpl implements aDAOService {
 
-	public alumnos_portatilesDTO alumnoDTOaDAO(alumnos_portatilesDTO alumnDTO) {
+	public alumnos alumnoDTOaDAO(alumnos_portatilesDTO alumnDTO) {
 		
-		alumnos_portatilesDTO alumn = new alumnos_portatilesDTO();
+		alumnos alumn = new alumnos();
 		if(alumnDTO != null)
 		{
 			alumn.setNombre(alumnDTO.getNombre());
@@ -20,8 +22,8 @@ public class aDAOServiceImpl implements aDAOService {
 		return alumn;
 	}
 
-	public alumnos_portatilesDTO portatilDTOaDAO(alumnos_portatilesDTO portatilDTO) {
-		alumnos_portatilesDTO port = new alumnos_portatilesDTO();
+	public portatiles portatilDTOaDAO(alumnos_portatilesDTO portatilDTO) {
+		portatiles port = new portatiles();
 		if(portatilDTO != null)
 		{
 			port.setMarca(portatilDTO.getMarca());

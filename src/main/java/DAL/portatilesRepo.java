@@ -13,4 +13,6 @@ public interface portatilesRepo {
 	 * @return listar  portatiles de todos los alumnos 
 	 */
 	public List<portatiles> listarPortatilconAlumno(int port);
+	
+	public List<portatiles> listarPortatiles();
 }

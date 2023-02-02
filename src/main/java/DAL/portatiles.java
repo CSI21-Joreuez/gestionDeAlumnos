@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="ga_portatiles",schema="dlk_gestionPortatil")
+@Table(name="gp_portatiles",schema="dlk_gestion_portatil")
 public class portatiles {
 
 	@Id
@@ -12,22 +12,32 @@ public class portatiles {
 	@Column(name="id_portatil", unique= true, nullable=true)
 	private int id_portatil;
 	
-	@Column(name="marca", unique=false, nullable=false)
+	@Column(name="marca")
 	private String marca;
 	
-	@Column(name="modelo", unique=false, nullable=false)
+	@Column(name="modelo")
 	private String modelo;
 	
-	@OneToOne(mappedBy="num_port")
-	private alumnos alumno_id;
+	private int alumno_id;
 
 	
 
-	public alumnos getAlumno_id() {
+	public portatiles() {
+		super();
+	}
+
+	public portatiles(String marca, String modelo, int alumno_id) {
+		super();
+		this.marca = marca;
+		this.modelo = modelo;
+		this.alumno_id = alumno_id;
+	}
+
+	public int getAlumno_id() {
 		return alumno_id;
 	}
 
-	public void setAlumno_id(alumnos alumno_id) {
+	public void setAlumno_id(int alumno_id) {
 		this.alumno_id = alumno_id;
 	}
 

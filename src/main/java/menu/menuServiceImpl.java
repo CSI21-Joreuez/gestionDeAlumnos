@@ -3,7 +3,11 @@ package menu;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import DAL.alumnos;
+import DAL.alumnosRepoImpl;
 import DAL.portatiles;
 import DAL.DTO.aDAOService;
 import DAL.DTO.aDAOServiceImpl;
@@ -11,6 +15,12 @@ import DAL.DTO.aDTOServicio;
 import DAL.DTO.aDTOServicioImpl;
 import DAL.DTO.alumnos_portatilesDTO;
 
+/**
+ * @author JOD
+ * Implementa la interfaz MenuService
+ */
+
+@Service
 public class menuServiceImpl implements menuService {
 
 	aDTOServicio aDto = new aDTOServicioImpl();
@@ -34,9 +44,8 @@ public class menuServiceImpl implements menuService {
 	}
 
 	public boolean darAltaAlumno(ConsultasService consultas) {
-		try {
 			
-		
+		Boolean resultadoInsert = false;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("[INFO] - Matriculacion Alumno");
 		System.out.println();
@@ -44,44 +53,116 @@ public class menuServiceImpl implements menuService {
 		String nombre = scan.next();
 		System.out.println("¿Numero de telefono del Alumno?");
 		String telefono = scan.next();
-		System.out.println("¿Numero del portatil asignado?");
-		int numPort = scan.nextInt();
+		System.out.println("[INFO] - Alta Portatil");
+		System.out.println();
+		System.out.println("¿Modelo?");
+		String modelo = scan.next();
+		System.out.println("¿Marca?");
+		String marca = scan.next();
+		System.out.println("¿id de Alumno?");
+		int id_alumn = scan.nextInt();
+
+
 		
 		//Si tuvieramos que trabajar con los datos que se han introducido, se pasaría a DTO
-		alumnos_portatilesDTO alumn = aDto.alumnoADTO(nombre, telefono, numPort);
+		
+		alumnos_portatilesDTO alumn = aDto.alumnoADTO(nombre, telefono, new portatiles(marca,modelo,id_alumn));
 		
 
 		//Una vez tenemos en el DTO los datos modificados y correctamente formateados se pasaría a DAO
-		alumnos alumDAO = aDao.alumnoDTOaDAO(alumn);
-		return true;
+		alumnos alm =  aDao.alumnoDTOaDAO(alumn);
+		//Inserción del DAO en base de datos
+		resultadoInsert = consultas.darAltaAlumno(alm);
+		return resultadoInsert;
+	}
+
+	//Dar de Alta a un portatil
+	public boolean darAltaPortatil(ConsultasService consultas) {
+		
+			
+		Boolean resultadoAlta = false;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("[INFO] - Alta Portatil");
+		System.out.println();
+		System.out.println("¿Modelo?");
+		String modelo = scan.next();
+		System.out.println("¿Marca?");
+		String marca = scan.next();
+		System.out.println("[INFO] - Datos de Alumno");
+		System.out.println();
+		System.out.println("¿ID del Alumno?");
+		int id_alumn = scan.nextInt();
+		
+		//Si tuvieramos que trabajar con los datos que se han introducido, se pasaría a DTO
+		alumnos_portatilesDTO port = aDto.portatilADTO(marca, modelo ,id_alumn);
+		
+		//Una vez tenemos en el DTO los datos modificados y correctamente formateados se pasaría a DAO
+				portatiles pt =  aDao.portatilDTOaDAO(port);
+				//Inserción del DAO en base de datos
+				resultadoAlta = consultas.darAltaPortatil(pt);
+				return resultadoAlta;
+	}
+
+	public boolean darBajaAlumno(ConsultasService consultas) {
+		try {
+			Boolean resultadoborrado = false;
+			System.out.println("[INFO] - Baja Alumno");
+			Scanner scan = new Scanner(System.in);
+			List<alumnos> listado = consultas.listadoAlumnos();
+			for (alumnos al : listado) {
+				System.out.println(al.getId_alumno()+") " +al.getNombre()+" "+al.getTelefono());
+			}
+			System.out.println("¿Numero del Alumno a Borrar?");
+			int id = scan.nextInt();
+			for (alumnos alumnos : listado) {
+				if(id == alumnos.getId_alumno())
+					 resultadoborrado = consultas.darBajaAlumno(alumnos);
+			}
+			
 		} catch (Exception e) {
-			System.out.println("[ERROR] - Error al insertar nuevo alumno: " + e);
+			System.out.println("[ERROR] - Error al borrar el alumno: " + e);
 		}
 		return false;
 	}
 
-	public boolean darAltaPortatil(ConsultasService consultas) {
-		// TODO Auto-generated method stub
-		return false;
+	public List<portatiles> listarPortatilconAlumno(ConsultasService consultas) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("[INFO] - Lista Portatiles");
+		System.out.println("Numero de Alumno a Buscar");
+		Integer nump = scan.nextInt();
+		List<portatiles>listap = consultas.listarPortatilconAlumno(nump);
+		for (portatiles pt : listap) {
+			System.out.println(pt.getId_portatil()+") "+pt.getMarca()+" "+ pt.getModelo()+" "+pt.getAlumno_id());
+			
+			}
+		return listap;
+	}
+	public List<alumnos> listadoAlumnos(ConsultasService consultas) {
+
+		List<alumnos> listado = consultas.listadoAlumnos();
+		for (alumnos al : listado) {
+			System.out.println(al.getId_alumno()+") " +al.getNombre()+" "+al.getTelefono()+" "+al.getNum_port().getId_portatil());
+			
+			}
+		return listado;
 	}
 
-	public boolean darBajaAlumno(ConsultasService consultas) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public List<portatiles> listarPortatilconAlumno(int port) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<alumnos> listadoAlumnos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<alumnos> listarAlumnoConPortatil(int alumn) {
-		// TODO Auto-generated method stub
+	public List<alumnos> listarAlumnoConPortatil(ConsultasService consultas) {
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("[INFO] - Lista Alumnos");
+		System.out.println("Numero de Portatil a Buscar");
+		Integer nump = scan.nextInt();
+		List<alumnos> listado = consultas.listarAlumnoConPortatil(nump);
+		List<portatiles> listp = consultas.listarPortatiles();
+		int portnum=0;
+		for (portatiles portatiles : listp) {
+			if(nump == portatiles.getId_portatil())
+			{portnum = portatiles.getId_portatil();}
+		}
+		for (alumnos alm : listado) {
+			System.out.println(alm.getId_alumno()+") "+alm.getNombre()+" "+alm.getTelefono()+" "+portnum);
+		}
 		return null;
 	}
 

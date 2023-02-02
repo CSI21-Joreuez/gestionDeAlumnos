@@ -23,11 +23,17 @@ public class portatilesRepoImpl implements portatilesRepo {
 		em.persist(port);
 	}
 
+	@Override
 	public List<portatiles> listarPortatilconAlumno(int port) {
-		String jpql = "SELECT pt FROM portatilesRepo pt WHERE pt.id > ?1";
+		String jpql = "SELECT pt FROM portatiles pt WHERE pt.alumno_id > :port";
 		Query query = em.createQuery(jpql);
-		query.setParameter(1, port);
+		query.setParameter("port", port);
 		return query.getResultList();
+	}
+	
+	@Override
+	public List<portatiles> listarPortatiles(){
+		return em.createQuery("SELECT portatiles FROM portatiles portatiles").getResultList();
 	}
 
 }

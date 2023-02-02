@@ -37,7 +37,9 @@
 				<property name="showSql" value="true" />
 				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			</bean>
+		
 		</property>
+		
 	</bean>
 	
 	<!-- Gestor de transacciones -->
@@ -47,5 +49,6 @@
 	
 	<!-- Se habilita la anotación para transacciones -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	
 </beans>

@@ -13,7 +13,7 @@ public class alumnos_portatilesDTO {
 
 	private String telefono;
 
-	private int num_port;
+	private portatiles num_port;
 
 	
 	//Portatiles
@@ -29,15 +29,14 @@ public class alumnos_portatilesDTO {
 	
 	
 
-	public alumnos_portatilesDTO(int id_portatil, String marca, String modelo, int alumno_id) {
+	public alumnos_portatilesDTO( String marca, String modelo, int alumno_id) {
 		super();
-		this.id_portatil = id_portatil;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.alumno_id = alumno_id;
 	}
 
-	public alumnos_portatilesDTO(String nombre, String telefono, int num_port) {
+	public alumnos_portatilesDTO(String nombre, String telefono, portatiles num_port) {
 		super();
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -100,11 +99,11 @@ public class alumnos_portatilesDTO {
 		this.telefono = telefono;
 	}
 
-	public int getNum_port() {
+	public portatiles getNum_port() {
 		return num_port;
 	}
 
-	public void setNum_port(int num_port) {
+	public void setNum_port(portatiles num_port) {
 		this.num_port = num_port;
 	}
 

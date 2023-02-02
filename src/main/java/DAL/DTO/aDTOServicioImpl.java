@@ -11,7 +11,7 @@ import DAL.portatiles;
 @Service
 public class aDTOServicioImpl implements aDTOServicio {
 
-	public alumnos_portatilesDTO alumnoADTO(String nombre, String telefono, int num_port) {
+	public alumnos_portatilesDTO alumnoADTO(String nombre, String telefono, portatiles num_port) {
 		alumnos_portatilesDTO apDTO = new alumnos_portatilesDTO(nombre, telefono, num_port);
 		return apDTO;
 	}
@@ -20,5 +20,6 @@ public class aDTOServicioImpl implements aDTOServicio {
 		alumnos_portatilesDTO paDTO = new alumnos_portatilesDTO(marca, modelo, alumno_id);
 		return paDTO;
 	}
+
 
 }

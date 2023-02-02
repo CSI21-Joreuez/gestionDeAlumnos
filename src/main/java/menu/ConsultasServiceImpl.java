@@ -23,6 +23,8 @@ public class ConsultasServiceImpl implements ConsultasService {
 	@Autowired
 	private portatilesRepo psi2;
 	
+	
+	
 	@Transactional
 	public boolean darAltaAlumno(alumnos alumn) {
 		try {
@@ -49,6 +51,7 @@ public class ConsultasServiceImpl implements ConsultasService {
 
 	@Transactional
 	public List<alumnos> listarAlumnoConPortatil(int alumn) {
+
 		try {
 			List<alumnos> listaAlumn = psi.listarAlumnoConPortatil(alumn);
 			return listaAlumn;
@@ -66,7 +69,7 @@ public class ConsultasServiceImpl implements ConsultasService {
 			psi2.darAltaPortatil(port);
 
 		} catch (Exception e) {
-			System.out.println("[ERROR] - Error al mostrar el listado de alumnos segun el id del portatil: " + e);
+			System.out.println("[ERROR] - Error al añadir el portatil: " + e);
 			return false;
 
 		}
@@ -96,8 +99,16 @@ public class ConsultasServiceImpl implements ConsultasService {
 			System.out.println("[ERROR] - Error al dar de baja el alumno " + e);
 			return false;
 		}
-		
-
+	}
+	@Transactional
+	public List<portatiles> listarPortatiles(){
+		try {
+			List<portatiles> listport = psi2.listarPortatiles();
+			return listport;
+		} catch (Exception e) {
+			System.out.println("[ERROR] - Error al mostrar el listado de alumnos: " + e);
+			return null;
+		}
 	}
 
 }

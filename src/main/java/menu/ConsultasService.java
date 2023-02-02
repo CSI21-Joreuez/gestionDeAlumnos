@@ -22,7 +22,7 @@ public interface ConsultasService {
 	 * listadoAlumnos: lista los alumnos
 	 * @return lista los alumnos
 	 */
-	List<alumnos> listadoAlumnos();
+	public List<alumnos> listadoAlumnos();
 	
 	/**
 	 * listarAlumnoConPortatil: lista los alumnos
@@ -54,5 +54,10 @@ public interface ConsultasService {
 	
 	public boolean darBajaAlumno(alumnos alumn);
 
-
+	/**
+	 * listarPortatiles: lista de portatiles
+	 *  @return lista de portatiles 
+	 */
+	
+	public List<portatiles> listarPortatiles();
 }

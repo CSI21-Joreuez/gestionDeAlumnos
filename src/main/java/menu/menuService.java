@@ -53,18 +53,18 @@ public interface menuService {
 	 * @param int portatil id
 	 * @return lista de portatiles con un alumno especifico
 	 */
-	public List<portatiles> listarPortatilconAlumno(int port);
+	public List<portatiles> listarPortatilconAlumno(ConsultasService consultas);
 	
 	/**
 	 * listadoAlumnos: lista de alumnos
 	 * @return lista de alumnos
 	 */
-	public List<alumnos> listadoAlumnos();
+	public List<alumnos> listadoAlumnos(ConsultasService consultas);
 	/*
 	 * listarAlumnoConPortatil: lista de los alumnos con portatiles especifico
 	 * @param int alumno id
 	 * @return lista de alumnos con un portatil
 	 */
-	public List<alumnos> listarAlumnoConPortatil(int alumn);
+	public List<alumnos> listarAlumnoConPortatil(ConsultasService consultas);
 	
 }

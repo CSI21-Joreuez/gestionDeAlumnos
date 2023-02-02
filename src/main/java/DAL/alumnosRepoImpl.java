@@ -21,7 +21,7 @@ public class alumnosRepoImpl implements alumnosRepo {
 	private EntityManager em;
 	
 	public List<alumnos> listadoAlumnos() {
-		return em.createQuery("SELECT alm FROM alumnosRepo alm").getResultList();
+		return em.createQuery("SELECT alumnos FROM alumnos alumnos").getResultList();
 	}
 
 	public void darBajaAlumno(alumnos alumn) {
@@ -34,7 +34,7 @@ public class alumnosRepoImpl implements alumnosRepo {
 	}
 
 	public List<alumnos> listarAlumnoConPortatil(int alumn) {
-		String jpql = "SELECT pt FROM alumnosRepo pt WHERE pt.num_port > ?1";
+		String jpql = "SELECT pt FROM alumnos pt WHERE pt.num_port > ?1";
 		Query query = em.createQuery(jpql);
 		query.setParameter(1, alumn);
 		return query.getResultList();
