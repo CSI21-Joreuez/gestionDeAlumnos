@@ -25,7 +25,7 @@ public class portatilesRepoImpl implements portatilesRepo {
 
 	@Override
 	public List<portatiles> listarPortatilconAlumno(int port) {
-		String jpql = "SELECT pt FROM portatiles pt WHERE pt.alumno_id > :port";
+		String jpql = "SELECT pt FROM portatiles pt WHERE pt.alumno_id = :port";
 		Query query = em.createQuery(jpql);
 		query.setParameter("port", port);
 		return query.getResultList();

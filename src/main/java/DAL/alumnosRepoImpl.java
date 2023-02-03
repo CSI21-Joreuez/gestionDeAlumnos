@@ -34,10 +34,18 @@ public class alumnosRepoImpl implements alumnosRepo {
 	}
 
 	public List<alumnos> listarAlumnoConPortatil(int alumn) {
-		String jpql = "SELECT pt FROM alumnos pt WHERE pt.num_port > ?1";
+		//String jpql2 = "SELECT a.id_alumno, a.nombre, a.telefono, pt.id_portatil FROM portatiles pt, alumnos a WHERE pt.id_portatil =?1";
+		//Query query2 = em.createQuery(jpql2);
+		String jpql = "SELECT pt FROM portatiles pt WHERE pt.id_portatil = ?1";
 		Query query = em.createQuery(jpql);
+		//query2.setParameter(1, alumn);
 		query.setParameter(1, alumn);
-		return query.getResultList();
+		query.getResultList();
+		portatiles pt = (portatiles) query.getSingleResult();
+		String alm = "SELECT a FROM alumnos a WHERE a.num_port = ?1";
+		Query quer = em.createQuery(alm);
+		quer.setParameter(1, pt);
+		return quer.getResultList();
 	}
 
 }

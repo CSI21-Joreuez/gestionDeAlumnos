@@ -153,15 +153,9 @@ public class menuServiceImpl implements menuService {
 		System.out.println("[INFO] - Lista Alumnos");
 		System.out.println("Numero de Portatil a Buscar");
 		Integer nump = scan.nextInt();
-		List<alumnos> listado = consultas.listarAlumnoConPortatil(nump);
-		List<portatiles> listp = consultas.listarPortatiles();
-		int portnum=0;
-		for (portatiles portatiles : listp) {
-			if(nump == portatiles.getId_portatil())
-			{portnum = portatiles.getId_portatil();}
-		}
+		List<alumnos> listado = consultas.listarAlumnoConPortatil(nump);		
 		for (alumnos alm : listado) {
-			System.out.println(alm.getId_alumno()+") "+alm.getNombre()+" "+alm.getTelefono()+" "+portnum);
+			System.out.println(alm.getId_alumno()+") "+alm.getNombre()+" "+alm.getTelefono()+" "+alm.getNum_port().getId_portatil());
 		}
 		return null;
 	}

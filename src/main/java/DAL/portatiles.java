@@ -18,6 +18,7 @@ public class portatiles {
 	@Column(name="modelo")
 	private String modelo;
 	
+	@Column(name="alumno_id")
 	private int alumno_id;
 
 	
